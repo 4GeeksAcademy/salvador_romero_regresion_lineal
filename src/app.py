@@ -8,8 +8,13 @@ from sklearn.metrics import mean_squared_error, r2_score,accuracy_score
 
 
 data = pd.read_csv("https://raw.githubusercontent.com/4GeeksAcademy/linear-regression-project-tutorial/main/medical_insurance_cost.csv")
-data.to_csv("../data/raw/data_raw.csv", index=False)
+
 data_uniques = data.drop_duplicates()
+
+data_uniques["sex"] = pd.factorize(data_uniques["sex"])[0]
+data_uniques["smoker"] = pd.factorize(data_uniques["smoker"])[0]
+data_uniques["region"] = pd.factorize(data_uniques["region"])[0]
+
 col = ["age", "bmi", "smoker", "charges"]
 new_data = data_uniques[col]
 
